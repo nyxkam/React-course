@@ -1,27 +1,16 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import './App.css'
-import { Button } from './components'
 
 
 function App() {
-  // 1 - mount 
-  // 2 - cambio de estado 
-  // 3 - async
+  const [data, setData] = useState([])
+  const [loading, setLoading] = useState(false)
+  const [error, setError] = useState("")
 
-  // batching 
-  const countMore = () => {
-    setCount((count) => count + 1)
-    setCount((count) => count + 1)
-    setCount((count) => count + 1)
-    setCount((count) => count + 1)
-    setCount((count) => count + 1)
-    setCount((count) => count + 1)
-    setCount((count) => count + 1)
-    setCount((count) => count + 1)
-    setCount((count) => count + 1)
-    setCount((count) => count + 1)
+  const consoleLoader = (loadingValue: boolean) => {
+    setLoading(loadingValue)
+    console.info(loading)
   }
-  const [count, setCount] = useState(0)
 
   const fetchData = async () => {
     consoleLoader(true)
@@ -52,9 +41,7 @@ function App() {
     return <div>UPS! Hay un error: {error}</div>
   }
   return (
-    <>
-      <Button label={`Count is ${count}`} parentMethod={countMore} />
-    </>
+    <div>{JSON.stringify(data)}</div>
   )
 }
 
