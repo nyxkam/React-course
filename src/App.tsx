@@ -23,6 +23,34 @@ function App() {
   }
   const [count, setCount] = useState(0)
 
+  const fetchData = async () => {
+    consoleLoader(true)
+    try {
+      const response = await fetch("https://api.example.com/data")
+
+      if (!response.ok) {
+        throw new Error("Error al obtener datos")
+      }
+
+      const jsoData = await response.json()
+      setData(jsoData)
+    } catch (err) {
+      setError(err as string)
+    } finally {
+      consoleLoader(false)
+    }
+  }
+
+  useEffect(() => {
+    fetchData()
+  }, [])
+
+  if (loading) {
+    return <div>Cargando ... </div>
+  }
+  if (error) {
+    return <div>UPS! Hay un error: {error}</div>
+  }
   return (
     <>
       <Button label={`Count is ${count}`} parentMethod={countMore} />
