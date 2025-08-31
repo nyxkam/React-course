@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react'
 import './App.css'
+import { useFetch } from './hooks';
 
 const url = "https://api.example.com/data";
 // User ejemplo 
@@ -18,9 +18,11 @@ function App() {
   if (loading) {
     return <div>Cargando ... </div>
   }
+
   if (error) {
-    return <div>UPS! Hay un error: {error}</div>
+    return <div>UPS! Hay un error: {error.message}</div>
   }
+
   return (
     <div>{JSON.stringify(data)}</div>
   )
