@@ -4,3 +4,4 @@ export * from "./UseRef";
 export * from "./UseMemo/ShoppingCar.tsx";
 export * from "./UseCallback/PhoneBook.tsx";
 export * from "./Modal/Modal.tsx";
+export * from "./ErrorBoundaryExamples/UndefinedExample.tsx";
